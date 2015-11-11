@@ -7,8 +7,10 @@
 
 #include "CyberWorm.h"
 
-CyberWorm::CyberWorm() {
-	// TODO Auto-generated constructor stub
+CyberWorm::CyberWorm(std::string cyber_worm_os, std::string cyber_worm_name, int cyber_worm_dormancy_time){
+
+}
+CyberWorm::CyberWorm(const CyberWorm& other){
 
 }
 

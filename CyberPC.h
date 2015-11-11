@@ -2,8 +2,8 @@
 #define CYBER_PC
 #include <iostream>
 #include <string>
-#include "../include/cyberworm.h"
-#include "../include/cyberdns.h"
+#include "CyberWorm.h"
+#include "CyberDNS.h"
 
 class CyberDNS; // Forward decleration
 
@@ -25,7 +25,7 @@ public:
 	void Run(const CyberDNS & server); 							// Activate PC and infect others if worm is active
 	void Disinfect();											// called by cyber expert, disinfect PC
 	//Add additional functions here if necessary
-
+	~CyberPC();
 };
 
 

@@ -7,7 +7,7 @@
 
 #include "CyberPC.h"
 
-CyberPC::CyberPC() {
+CyberPC::    CyberPC(std::string cyber_pc_os, std::string cyber_pc_name) {
 	// TODO Auto-generated constructor stub
 
 }

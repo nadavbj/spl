@@ -1,11 +1,11 @@
-#endif
+//#endif
 
 #ifndef CYBERDNS_H
 #define CYBERDNS_H
 #include <iostream>
 #include <string>
 #include <map>
-#include "../include/cyberpc.h"
+#include "CyberPC.h"
 
 class CyberPC; //Forward deceleration
 
@@ -17,6 +17,7 @@ private:
 
 public:
     CyberDNS();
+    ~CyberDNS();
 	void AddPC(CyberPC & cyber_pc_);
 	CyberPC & GetCyberPC(const std::string & cyber_pc_name) const;
 	std::vector<std::string> GetCyberPCList(); 		// Return list of PC's as a vector of strings.
