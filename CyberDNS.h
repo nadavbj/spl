@@ -20,6 +20,7 @@ public:
     ~CyberDNS();
 	void AddPC(CyberPC & cyber_pc_);
 	CyberPC & GetCyberPC(const std::string & cyber_pc_name) const;
+	CyberPC & GetCyberPC(int pcNum) const;
 	std::vector<std::string> GetCyberPCList(); 		// Return list of PC's as a vector of strings.
 													// All access to PC objects should use this function
 													// Do not store pointers elsewhere!

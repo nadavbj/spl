@@ -13,6 +13,8 @@ private:
     int cyber_expert_work_time_;
     int cyber_expert_rest_time_;
     int cyber_expert_efficiency_;
+    int daysSinceClockedIn;
+    int numOfCheckedPcs;
     CyberExpert(); // Prevent the use of an empty constructor
 	// Add your own variables here
 
@@ -21,6 +23,7 @@ public:
  	void Clean(CyberPC & cyber_pc);
 	// Add your own functions here
  	~CyberExpert();
+ 	void Run(const CyberDNS & server);
 };
 
 
