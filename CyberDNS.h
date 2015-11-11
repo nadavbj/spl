@@ -13,7 +13,7 @@ class CyberDNS
 {
 private:
     std::map<const std::string, CyberPC &> cyber_DNS_;	//Hash map to hold PC names and pointers
-
+    std::vector<std::string> keys;
 
 public:
     CyberDNS();

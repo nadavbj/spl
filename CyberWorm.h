@@ -19,6 +19,9 @@ public:
 	CyberWorm(const CyberWorm& other); //copy constructor;
 	// Add your own functions here
 	~CyberWorm();
+	std::string getWormOs();
+	std::string getName();
+	int getWormDormancyTime();
 };
 
 
