@@ -27,9 +27,11 @@ void CyberPC::AddConnection(std::string  second_pc){
 }
 void CyberPC::Infect(CyberWorm & worm){
 	if(cyber_pc_os_.compare(worm.getWormOs())==0){
-		if(cyber_worm_!= NULL)
-			Disinfect();
-		cyber_worm_= &worm;
+		if(cyber_worm_!= NULL){
+			delete cyber_worm_;
+		}
+
+		cyber_worm_= new CyberWorm(worm);
 		cyber_pc_time_to_infect_=cyber_worm_->getWormDormancyTime();
 		std::cout<<cyber_pc_name_<<" infected by "<<worm.getName()<<std::endl;
 	}
@@ -37,7 +39,7 @@ void CyberPC::Infect(CyberWorm & worm){
 void CyberPC::Infect(std::string cyber_worm_os, std::string cyber_worm_name, int cyber_worm_dormancy_time){
 	if(cyber_pc_os_.compare(cyber_worm_os)==0){
 		if(cyber_worm_!= NULL)
-			Disinfect();
+			delete cyber_worm_;
 		cyber_worm_=new CyberWorm(cyber_worm_os,cyber_worm_name,cyber_worm_dormancy_time);
 		cyber_pc_time_to_infect_=cyber_worm_->getWormDormancyTime();
 		std::cout<<cyber_pc_name_<<" infected by "<<cyber_worm_name<<std::endl;

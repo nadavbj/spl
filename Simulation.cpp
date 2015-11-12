@@ -60,8 +60,8 @@ int main(int argc, char **argv)
 			experts[i].Run(DNS);
 		}
 
-		for (int i = 0; i < DNS.GetCyberPCList().size(); ++i) {
-			DNS.GetCyberPC(i).Run(DNS);
+		for (int i = 0; i < DNS.GetCyberPCList().size(); i++) {
+			DNS.GetCyberPC(DNS.GetCyberPCList()[i]).Run(DNS);
 		}
 	}
 
