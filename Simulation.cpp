@@ -1,9 +1,4 @@
-/*
- * Simulation.cpp
- *
- *  Created on: Nov 11, 2015
- *      Author: nadav
- */
+
 #include "CyberDNS.h"
 #include "CyberExpert.h"
 #include "CyberPC.h"
@@ -16,8 +11,9 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-	CyberDNS DNS;
+	CyberDNS *DNS=new CyberDNS();
 	vector<CyberExpert> experts;
+	//vector<CyberPC*> cyberPC_;
 
 	int day=0;
 	int terminateDay;
@@ -27,18 +23,24 @@ int main(int argc, char **argv)
 	while(!pt.empty())
 	{
 		cout<<"Adding to server: "<<pt.get<string>("computer.name")<<endl;
-		DNS.AddPC(*new CyberPC(pt.get<string>("computer.os"),pt.get<string>("computer.name")));
+		CyberPC* toAdd =new CyberPC(pt.get<string>("computer.os"),pt.get<string>("computer.name"));
+				//cyberPC_.push_back(toAdd);
+				DNS->AddPC(*toAdd);
 		pt.pop_front();
 	}
+
+	cout<<"\n\n\n"<<endl;
 
 	boost::property_tree::xml_parser::read_xml("network.xml",pt);
 	while(!pt.empty())
 	{
 		cout<<"Connecting "<<pt.get<string>("wire.pointA")<<" to "<<pt.get<string>("wire.pointB")<<endl;
-		DNS.GetCyberPC(pt.get<string>("wire.pointA")).AddConnection(pt.get<string>("wire.pointB"));
-		DNS.GetCyberPC(pt.get<string>("wire.pointB")).AddConnection(pt.get<string>("wire.pointA"));
+		DNS->GetCyberPC(pt.get<string>("wire.pointA")).AddConnection(pt.get<string>("wire.pointB"));
+		DNS->GetCyberPC(pt.get<string>("wire.pointB")).AddConnection(pt.get<string>("wire.pointA"));
 		pt.pop_front();
 	}
+
+	cout<<"\n\n\n"<<endl;
 
 	boost::property_tree::xml_parser::read_xml("events.xml",pt);
 	terminateDay=pt.get<int>("termination.time");
@@ -52,19 +54,23 @@ int main(int argc, char **argv)
 		}
 		if(pt.front().first.compare("hack")==0)
 		{
-			DNS.GetCyberPC(pt.get<string>("hack.computer")).Infect(pt.get<string>("hack.wormOs"),pt.get<string>("hack.wormName"),pt.get<int>("hack.wormDormancy"));
+			cout<<"\tHack occured on "<<pt.get<string>("hack.computer")<<endl;
+			DNS->GetCyberPC(pt.get<string>("hack.computer")).Infect(pt.get<string>("hack.wormOs"),pt.get<string>("hack.wormName"),pt.get<int>("hack.wormDormancy"));
 			pt.pop_front();
 		}
 
-		for (int i = 0; i < experts.size(); ++i) {
-			experts[i].Run(DNS);
+		for (unsigned int i = 0; i < experts.size(); ++i) {
+			experts[i].Run(*DNS);
 		}
 
-		for (int i = 0; i < DNS.GetCyberPCList().size(); i++) {
-			DNS.GetCyberPC(DNS.GetCyberPCList()[i]).Run(DNS);
-		}
+		for (unsigned int i = 0; i < DNS->GetCyberPCList().size(); i++)
+			DNS->GetCyberPC(DNS->GetCyberPCList()[i]).Run(*DNS);
+
 	}
 
+	delete DNS;
+	//BOOST_FOREACH(CyberPC* pc ,cyberPC_)
+	//	  delete pc;
 }
 
 

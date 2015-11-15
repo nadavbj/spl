@@ -34,6 +34,12 @@
  <restTime>1</restTime>
  <efficiency>3</efficiency>
 </clock-in>
+<clock-in>
+ <name>Einav Genadi Galil</name>
+ <workTime>3</workTime>
+ <restTime>1</restTime>
+ <efficiency>3</efficiency>
+</clock-in>
 <termination>
 	<time>10</time>
 </termination>

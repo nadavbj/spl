@@ -1,9 +1,3 @@
-/*
- * CyberWorm.cpp
- *
- *  Created on: Nov 11, 2015
- *      Author: nadav
- */
 
 #include "CyberWorm.h"
 
